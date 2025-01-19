@@ -1,20 +1,16 @@
-package org.antoooory;
+package org.antoooory.advice;
 
 import net.bytebuddy.asm.Advice;
 import org.springframework.http.client.reactive.ClientHttpResponse;
 import org.springframework.web.reactive.function.BodyExtractor;
-import org.springframework.web.reactive.function.client.ClientRequest;
 import org.springframework.web.reactive.function.client.ClientResponse;
-import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.function.Consumer;
-import java.util.stream.Collectors;
 
-public class BodyAdvice {
+public class WebClientHTTPAdvice {
     //create Advice for this method :         private String getLogPrefix(ClientRequest request, ClientHttpResponse response) {
     //            String var10000 = request.logPrefix();
     //            return var10000 + "[" + response.getId() + "] ";
@@ -35,7 +31,7 @@ public class BodyAdvice {
 
         if (returnValue instanceof Mono<?> mono) {
             logPrefixes.add(response.logPrefix());
-            returnValue = (T)mono.doOnNext(BodyAdvice::logElement);
+            returnValue = (T)mono.doOnNext(WebClientHTTPAdvice::logElement);
         }
 
     }

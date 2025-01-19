@@ -1,4 +1,4 @@
-package org.antoooory;
+package org.antoooory.advice;
 
 import io.vertx.core.http.HttpClientRequest;
 import net.bytebuddy.asm.Advice;
@@ -6,7 +6,7 @@ import io.netty.buffer.ByteBuf;
 import io.vertx.core.Handler;
 import io.vertx.core.AsyncResult;
 
-public class DoWriteAdvice {
+public class VertXHTTPRequestAdvice {
     @Advice.OnMethodEnter
     public static void intercept(@Advice.This HttpClientRequest httpClientRequest,
                                  @Advice.Argument(0) ByteBuf buffer,
